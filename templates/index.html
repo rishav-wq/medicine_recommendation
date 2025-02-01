@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Healthcare Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            background: linear-gradient(-45deg, #0A192F, #112240, #1B2A41, #233554);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #CCD6F6;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .navbar {
+            background-color: rgba(17, 34, 64, 0.8); /* Semi-transparent navy blue */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: #64FFDA !important;
+            font-size: 24px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #8892B0 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #64FFDA !important;
+        }
+
+        h1, h2 {
+            font-weight: 700;
+            color: #64FFDA;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Split Screen Layout */
+        .split-screen {
+            display: flex;
+            height: calc(100vh - 56px); /* Subtract navbar height */
+        }
+
+        .left-half, .right-half {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .left-half {
+            background: rgba(17, 34, 64, 0.6); /* Semi-transparent navy blue */
+            border-right: 2px solid #64FFDA;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .right-half {
+            background: rgba(17, 34, 64, 0.6); /* Semi-transparent navy blue */
+            flex-direction: column;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(17, 34, 64, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Neon Glow Effect */
+        .neon-border {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #64FFDA, #52D1B2, #64FFDA);
+            z-index: -1;
+            border-radius: 15px;
+            animation: neonGlow 2s linear infinite;
+        }
+
+        @keyframes neonGlow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Button Container Styling for Right Half */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .toggle-button {
+            background: #233554;
+            color: #CCD6F6;
+            border: none;
+            font-size: 18px;
+            padding: 18px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 250px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-weight: 600;
+        }
+
+        .toggle-button:hover {
+            background-color: #1B2A41;
+            transform: translateY(-3px);
+        }
+
+        /* Doctor Image */
+        .doctor-image {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Navbar Improvements */
+        .navbar-toggler {
+            border: none;
+            color: #64FFDA;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(100, 255, 218, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        .navbar .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #CCD6F6;
+        }
+
+        .navbar .btn-primary {
+            background: #64FFDA;
+            border: none;
+            color: #0A192F;
+            font-weight: 600;
+        }
+
+        .navbar .btn-primary:hover {
+            background: #52D1B2;
+        }
+
+        /* Modal Styling */
+        .modal-header {
+            background-color: #112240;
+            color: #64FFDA;
+        }
+
+        .modal-body {
+            background-color: #0A192F;
+            color: #CCD6F6;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fas fa-stethoscope"></i> Healthcare Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Developer">Developer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Blog">Blog</a></li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Split Screen -->
+    <div class="split-screen">
+        <!-- Left Half - Disease Search -->
+        <div class="left-half">
+            <h1>Welcome to Healthcare Hub</h1>
+            <p>Enter your symptoms below to get a quick diagnosis and health recommendations.</p>
+            <div class="glass neon-border">
+                <form action="/predict" method="post">
+                    <div class="mb-4">
+                        <label for="symptoms" class="form-label">Enter Symptoms</label>
+                        <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="e.g., headache, nausea">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Predict</button>
+                </form>
+            </div>
+            <img src="data:image/jpeg;base64,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" alt="Doctor" class="doctor-image">
+        </div>
+
+        <!-- Right Half - Disease Information -->
+        <div class="right-half">
+            {% if predicted_disease %}
+            <div class="glass neon-border text-center">
+                <h2>AI Prediction Results</h2>
+                <div class="button-container">
+                    <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+                    <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+                    <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#precautionModal">Precautions</button>
+                    <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
+                    <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+                    <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Modals (Same as before) -->
+    <!-- Disease Modal -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ predicted_disease }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ dis_des }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Precaution Modal -->
+    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="precautionModalLabel">Precautions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in dis_pre %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medications Modal -->
+    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in dis_med %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diets Modal -->
+    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in dis_die %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workouts Modal -->
+    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in dis_wrkout %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

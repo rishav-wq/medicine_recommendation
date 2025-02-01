@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact - Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      /* Background styling */
+      .contact-section {
+        background-color: #f4f4f9;
+        padding: 60px 0;
+      }
+
+      /* Contact form styles */
+      .contact-form {
+        background-color: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form h2 {
+        color: #F39334;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-control {
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding: 15px;
+      }
+
+      .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(240, 149, 52, 0.25);
+      }
+
+      .btn-submit {
+        background-color: #F39334;
+        color: white;
+        border-radius: 10px;
+        padding: 12px 20px;
+        font-size: 18px;
+        width: 100%;
+        border: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-submit:hover {
+        background-color: #F37300;
+      }
+
+      .contact-info {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .contact-info i {
+        font-size: 30px;
+        color: #F39334;
+        margin-bottom: 15px;
+      }
+
+      .contact-info p {
+        font-size: 18px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="row">
+          <!-- Contact Form -->
+          <div class="col-md-6 offset-md-3">
+            <div class="contact-form">
+              <h2>Contact Us</h2>
+              <form action="/submit-contact" method="POST">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="col-md-6 offset-md-3 contact-info">
+            <h3>Get in Touch</h3>
+            <p>We would love to hear from you! Please fill out the form or contact us directly:</p>
+            <div>
+              <i class="bi bi-telephone-fill"></i>
+              <p><strong>Phone:</strong> +123 456 7890</p>
+            </div>
+            <div>
+              <i class="bi bi-envelope-fill"></i>
+              <p><strong>Email:</strong> info@healthcenter.com</p>
+            </div>
+            <div>
+              <i class="bi bi-geo-alt-fill"></i>
+              <p><strong>Address:</strong> 123 Health Street, City, Country</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Bootstrap Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.min.js"></script>
+  </body>
+</html>
